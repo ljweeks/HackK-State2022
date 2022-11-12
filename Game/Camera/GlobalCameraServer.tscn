@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Camera/GlobalCameraServer.gd" type="Script" id=1]
+
+[node name="CameraServer" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PreviewImageRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="PreviewFrameRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="StartRecordRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="EndRecordRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="RecordImageRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="RecordFramesRequest" type="HTTPRequest" parent="."]
+use_threads = true
