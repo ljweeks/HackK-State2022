@@ -108,8 +108,8 @@ def generate_framedata(image, landmarks):
         if landmarks is not None:
             landmark = points[index]
             damage_points[name] = {
-                'x': landmark.x,
-                'y': landmark.y
+                'x': landmark.x * width,
+                'y': landmark.y * height
             }
         else:
             damage_points[name] = {
