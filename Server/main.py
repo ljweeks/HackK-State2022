@@ -209,7 +209,7 @@ def start_record():
         return "<p>Hello, World!</p>"
 
 
-@app.route("/record/start")
+@app.route("/record/end")
 def end_record():
     global camera_lock
     global recording
@@ -233,4 +233,4 @@ def get_recorded_image():
         return "<p>Hello, World!</p>"
 
 
-app.run(port=8080)
+app.run(port=8080, threaded=True)
