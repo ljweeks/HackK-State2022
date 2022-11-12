@@ -17,25 +17,25 @@ grow_horizontal = 0
 script = ExtResource( 4 )
 
 [node name="current" type="TextureRect" parent="."]
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 texture = ExtResource( 3 )
 expand = true
 
 [node name="button" type="TextureButton" parent="."]
-margin_left = 68.0
-margin_right = 132.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+margin_left = 132.0
+margin_right = 260.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="complete" type="TextureRect" parent="."]
-margin_left = 136.0
-margin_right = 200.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+margin_left = 264.0
+margin_right = 392.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 texture = ExtResource( 1 )
 expand = true
 

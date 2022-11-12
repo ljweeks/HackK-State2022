@@ -13,21 +13,28 @@ _global_script_classes=[ {
 "class": "Character",
 "language": "GDScript",
 "path": "res://Data/Character.gd"
+}, {
+"base": "Node",
+"class": "character_selected_data",
+"language": "GDScript",
+"path": "res://Data/characters_selected_data.gd"
 } ]
 _global_script_class_icons={
-"Character": ""
+"Character": "",
+"character_selected_data": ""
 }
 
 [application]
 
 config/name="Hack K- State 2022"
-run/main_scene="res://test.tscn"
+run/main_scene="res://Menus/character_select.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Characters="*res://Data/Characters.gd"
 GlobalCameraServer="*res://Camera/GlobalCameraServer.tscn"
+CharactersSelectedData="*res://Data/characters_selected_data.gd"
 
 [gui]
 
