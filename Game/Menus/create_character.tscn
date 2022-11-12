@@ -27,7 +27,7 @@ margin_top = -300.0
 margin_bottom = 300.0
 
 [node name="frames" type="TextureRect" parent="VBoxContainer"]
-margin_right = 260.0
+margin_right = 264.0
 
 [node name="pos" type="Node2D" parent="VBoxContainer/frames"]
 
@@ -75,7 +75,7 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 4.0
-margin_right = 260.0
+margin_right = 264.0
 margin_bottom = 68.0
 
 [node name="frame_select" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
@@ -92,9 +92,15 @@ texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 expand = true
 
+[node name="frame_number" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 264.0
+margin_top = 23.0
+margin_right = 264.0
+margin_bottom = 41.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 260.0
+margin_right = 264.0
 margin_bottom = 111.0
 
 [node name="start" type="SpinBox" parent="VBoxContainer/HBoxContainer"]

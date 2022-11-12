@@ -1,7 +1,7 @@
 extends Node
 
 
-const PREVIEW_COOLDOWN := 500.0
+const PREVIEW_COOLDOWN := 0.1
 
 
 var preview_image: ImageTexture = null
