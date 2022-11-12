@@ -6,6 +6,7 @@ import numpy as np
 import threading
 import atexit
 from recording import Recording
+import time
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -14,7 +15,7 @@ mp_pose = mp.solutions.pose
 # === WEBCAM PARAMETERS ===
 
 # Which webcam to use
-webcam = 1
+webcam = 0
 # Which webcam driver to use
 driver = cv2.CAP_DSHOW
 
@@ -26,6 +27,10 @@ min_detection_confidence = 0.5
 min_tracking_confidence = 0.5
 smooth_segmentation = True
 
+# === RECORDING PARAMETERS ===
+frame_rate = 10
+max_frames = frame_rate * 3
+
 # Thread reading camera data and running AI
 camera_thread = threading.Thread()
 # Lock to control access to data
@@ -36,11 +41,12 @@ recording = Recording()
 
 # Transforms an image by masking out everything above a threshold on the mask
 def mask_image(image, mask):
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
     condition = False
     if mask is not None:
-        condition = np.stack((mask,) * 3, axis=-1) > 0.1
+        condition = np.stack((mask,) * 4, axis=-1) > 0.1
     bg_image = np.zeros(image.shape, dtype=np.uint8)
-    bg_image[:] = (1, 1, 1)
+    bg_image[:] = (0, 0, 0, 0)
     return np.where(condition, image, bg_image)
 
 
@@ -150,7 +156,14 @@ def create_app():
                 smooth_segmentation=smooth_segmentation) as pose:
             # Read each camera frame
             killed = False
+            prev = time.time()
             while cap.isOpened() and not killed:
+                # Get elapsed time
+                curr = time.time()
+                time_elapsed = time.time() - prev
+                prev = curr
+
+                # Read frame
                 success, image = cap.read()
                 if not success:
                     continue
@@ -167,6 +180,9 @@ def create_app():
                     killed = recording.kill
                     recording.preview_image = mask_image(image, results.segmentation_mask)
                     recording.preview_frame = generate_framedata(image, results.pose_landmarks)
+
+                    if recording.started and time_elapsed > 1.0 / frame_rate and recording.recording_len() < max_frames:
+                        recording.record_preview()
 
         # Release camera
         cap.release()
@@ -206,7 +222,9 @@ def start_record():
     global camera_lock
     global recording
     with camera_lock:
-        return "<p>Hello, World!</p>"
+        recording.clear()
+        recording.started = True
+    return ""
 
 
 @app.route("/record/end")
@@ -214,7 +232,8 @@ def end_record():
     global camera_lock
     global recording
     with camera_lock:
-        return "<p>Hello, World!</p>"
+        recording.started = False
+    return ""
 
 
 @app.route("/record/frames")
@@ -222,7 +241,7 @@ def get_recorded_frames():
     global camera_lock
     global recording
     with camera_lock:
-        return "<p>Hello, World!</p>"
+        return json.dumps(recording.recorded_frames)
 
 
 @app.route("/record/image")
@@ -230,7 +249,7 @@ def get_recorded_image():
     global camera_lock
     global recording
     with camera_lock:
-        return "<p>Hello, World!</p>"
+        return encode_image(recording.stitch_frames())
 
 
 app.run(port=8080, threaded=True)
