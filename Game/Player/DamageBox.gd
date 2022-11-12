@@ -14,6 +14,7 @@ var last_hit := INF
 func damage(amount: int) -> void:
 	if last_hit > INVULN_TIME:
 		health = max(health - amount, 0)
+		player.get_node("WhiteFlash").play("flash")
 		print("Player " + str(player.player) + " hit")
 
 func _physics_process(delta):
