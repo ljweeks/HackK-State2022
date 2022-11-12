@@ -48,6 +48,11 @@ func stop() -> void:
 	anim_time = 0
 	cur_move = -1
 
+func flip_x_coord(x: float) -> float:
+	if not player.mirror:
+		return 640 - x
+	return x
+
 func show_frame(image, frame):
 	sprite.texture = image
 	var bones = frame['character_colliders']
@@ -61,8 +66,8 @@ func show_frame(image, frame):
 			var bone = bones[shape_owner_name]
 			for shape in range(0, shape_count):
 				var shape_obj = damage_box.shape_owner_get_shape(owner, shape)
-				shape_obj.b = Vector2(bone["x1"], bone["y1"])
-				shape_obj.a = Vector2(bone["x2"], bone["y2"])
+				shape_obj.b = Vector2(flip_x_coord(bone["x1"]), bone["y1"])
+				shape_obj.a = Vector2(flip_x_coord(bone["x2"]), bone["y2"])
 	
 	var hurtboxes = frame['hurtboxes']
 	for key in hurtboxes.keys():
@@ -71,7 +76,7 @@ func show_frame(image, frame):
 		if 'active' in box and box['active']:
 			active = true
 		var hurtbox = sprite.get_node(key)
-		hurtbox.position = Vector2(box['x'], box['y'])
+		hurtbox.position = Vector2(flip_x_coord(box['x']), box['y'])
 		hurtbox.monitoring = active
 		hurtbox.monitorable = active
 
