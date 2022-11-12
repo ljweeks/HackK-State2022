@@ -260,12 +260,12 @@ def get_recorded_frames():
         return json.dumps(recording.recorded_frames)
 
 
-@app.route("/record/image")
-def get_recorded_image():
+@app.route("/record/image/<index>")
+def get_recorded_image(index=0):
     global camera_lock
     global recording
     with camera_lock:
-        return encode_image(recording.stitch_frames())
+        return encode_image(recording.recorded_images[int(index)])
 
 
 app.run(port=8080, threaded=True)

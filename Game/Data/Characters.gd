@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 
 
 var CHARACTERS = []

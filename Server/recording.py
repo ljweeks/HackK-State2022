@@ -27,7 +27,3 @@ class Recording:
     def record_preview(self):
         self.recorded_images.append(self.preview_image)
         self.recorded_frames.append(self.preview_frame)
-
-    # Stitch together all frames in the recording into one image
-    def stitch_frames(self):
-        return np.vstack(self.recorded_images)
