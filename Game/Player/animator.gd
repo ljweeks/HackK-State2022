@@ -72,5 +72,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			var last_index = frame_index
 			frame_index = int(floor(anim_time / FRAME_TIME)) + anim_ranges['start']
+			frame_index = min(frame_index, anim_images.size() - 1)
 			if frame_index != last_index:
 				show_frame(anim_images[frame_index], anim_frames[frame_index])

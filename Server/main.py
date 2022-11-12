@@ -30,7 +30,7 @@ smooth_segmentation = True
 
 # === RECORDING PARAMETERS ===
 frame_rate = 10
-max_frames = frame_rate * 3
+max_frames = frame_rate * 4
 
 # Thread reading camera data and running AI
 camera_thread = threading.Thread()
