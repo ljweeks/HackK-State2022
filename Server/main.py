@@ -7,6 +7,7 @@ import threading
 import atexit
 from recording import Recording
 import time
+from pygrabber.dshow_graph import FilterGraph
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -15,7 +16,7 @@ mp_pose = mp.solutions.pose
 # === WEBCAM PARAMETERS ===
 
 # Which webcam to use
-webcam = 0
+webcam = "c922"
 # Which webcam driver to use
 driver = cv2.CAP_DSHOW
 
@@ -79,6 +80,8 @@ def generate_framedata(image, landmarks):
     if landmarks is not None:
         points = landmarks.landmark
 
+    height, width, _ = image.shape
+
     # Get position of each bone
     bones = {}
     for name, indexes in bone_defs.items():
@@ -86,10 +89,10 @@ def generate_framedata(image, landmarks):
             landmark_0 = points[indexes[0]]
             landmark_1 = points[indexes[1]]
             bones[name] = {
-                'x1': landmark_0.x,
-                'y1': landmark_0.y,
-                'x2': landmark_1.x,
-                'y2': landmark_0.y
+                'x1': landmark_0.x * width,
+                'y1': landmark_0.y * height,
+                'x2': landmark_1.x * width,
+                'y2': landmark_1.y * height
             }
         else:
             bones[name] = {
@@ -126,6 +129,18 @@ def encode_image(image):
     return img_encoded.tobytes()
 
 
+# Returns the OpenCV index of the first camera with a name containing the given filter
+def camera_index(name):
+    graph = FilterGraph()
+    for idx, device in enumerate(graph.get_input_devices()):
+        if name in device:
+            return idx
+    return 0
+
+
+webcam_index = camera_index(webcam)
+
+
 # Flask application
 def create_app():
     app = Flask(__name__)
@@ -145,7 +160,8 @@ def create_app():
         global recording
 
         # Initialize video capture
-        cap = cv2.VideoCapture(webcam, driver)
+        cap = cv2.VideoCapture(webcam_index, driver)
+
 
         # Initialize mediapipe model
         with mp_pose.Pose(
