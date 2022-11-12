@@ -38,3 +38,5 @@ func _harmless_frame():
 		'character_colliders': {},
 		'hurtboxes': {}
 	}
+	
+#HURT BOX GENERATION
