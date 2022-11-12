@@ -29,6 +29,50 @@ margin_bottom = 300.0
 [node name="frames" type="TextureRect" parent="VBoxContainer"]
 margin_right = 260.0
 
+[node name="pos" type="Node2D" parent="VBoxContainer/frames"]
+
+[node name="left_arm_end" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="left_arm_base" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="right_arm_end" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="right_arm_base" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="chest_upper" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="chest_right" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="chest_left" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="chest_lower" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="left_leg_base" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="left_leg_end" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="right_leg_base" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="right_leg_end" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="left_head" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="right_head" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 4.0
 margin_right = 260.0

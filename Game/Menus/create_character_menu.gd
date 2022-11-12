@@ -1,12 +1,13 @@
 extends Control
 
-enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4}
+enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
 
 onready var cur_selected = BLOCK
 var all_checked = {}
 onready var slider = get_node("VBoxContainer/HBoxContainer2/frame_select")
 onready var start_frame = get_node("VBoxContainer/HBoxContainer/start") 
 onready var stop_frame = get_node("VBoxContainer/HBoxContainer/stop")
+
 var can_save
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,6 +53,7 @@ func _on_record_toggled(button_pressed):
 		print("Start recording")
 	else:
 		print("Stop recording")
+		
 		if(cur_selected == BLOCK):
 			print("recorded block")
 			$VBoxContainer2/block.complete.set_texture(load("res://Icons/checkmark.png"))
@@ -87,7 +89,37 @@ func _on_record_toggled(button_pressed):
 	$VBoxContainer2/save.modulate = Color.white
 	can_save = true
 
+func _process(delta):
+	if(cur_selected == BLOCK and all_checked.BLOCK == true):
+		display_preview(BLOCK)
+	elif(cur_selected == MOVE_LEFT and all_checked.MOVE_LEFT == true):
+		display_preview(MOVE_LEFT)
+	elif(cur_selected == MOVE_RIGHT and all_checked.MOVE_RIGHT == true):
+		display_preview(MOVE_RIGHT)
+	elif(cur_selected == MOVE1 and all_checked.MOVE1 == true):
+		display_preview(MOVE1)
+	elif(cur_selected == MOVE2 and all_checked.MOVE2 == true):
+		display_preview(MOVE2)
+	elif(cur_selected == MOVE3 and all_checked.MOVE3 == true):
+		display_preview(MOVE3)
+	elif(cur_selected == MOVE4 and all_checked.MOVE4 == true):
+		display_preview(MOVE4)
+	else:
+		display_preview(NO_MOVE)
 
+
+func display_preview(move):
+	print("displaying preview for" + str(move))
+	if(move == NO_MOVE):
+		$VBoxContainer/frames.set_texture(GlobalCameraServer.get_preview_image())
+	var bones = GlobalCameraServer.get_preview_frame()
+	if(bones.size() > 0):
+		for name in bones["character_colliders"].keys():
+			var bone = bones["character_colliders"][name]
+			var line = get_node("VBoxContainer/frames/" + name)
+			line.set_point_position(0, Vector2(bone["x1"], bone["y1"]))
+			line.set_point_position(1, Vector2(bone["x2"], bone["y2"]))
+			
 func _on_TextureButton_pressed():
 	if(start_frame.value < stop_frame.value and can_save):
 		print("save character")
