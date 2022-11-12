@@ -1,13 +1,13 @@
 class_name Character
 extends Resource
 
-var move_frames = {}
+export var move_frames = {}
 
-var move_ranges = {}
+export var move_ranges = {}
 
-var move_images = {}
+export var move_images = {}
 
-var name = ""
+export var name = ""
 
 func get_images(move):
 	var images = move_images[move]
