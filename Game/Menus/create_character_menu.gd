@@ -146,5 +146,10 @@ func display_preview(move):
 
 
 func _on_TextureButton_pressed():
-	if(start_frame.value < stop_frame.value and can_save):
-		print("save character")
+	if start_frame.value < stop_frame.value and can_save:
+		var char_data = Character.new()
+		char_data.name = $VVoxContainer/HBoxContainer/name.text
+		char_data.move_frames = moves_frames
+		char_data.move_ranges = moves_ranges
+		char_data.move_images = moves_images
+		Characters.add_character(char_data)
