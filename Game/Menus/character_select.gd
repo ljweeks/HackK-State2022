@@ -8,10 +8,19 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#create the item list for selectable characters
+	var selectIndex1 = 0
+	var selectIndex2 = 0
+	var index = 0
 	for item in Characters.CHARACTERS:
 		$player1/characterList1.add_item(item.name, null, true)
+		if item == CharactersSelectedData.player1:
+			selectIndex1 = index
 		$player2/characterList2.add_item(item.name, null, true)
+		if item == CharactersSelectedData.player2:
+			selectIndex2 = index
+		index += 1
+	$player1/characterList1.select(selectIndex1)
+	$player2/characterList2.select(selectIndex2)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
