@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/exampe_frame.png" type="Texture" id=2]
 [ext_resource path="res://Player/animator.gd" type="Script" id=3]
+[ext_resource path="res://Player/Hurtbox.gd" type="Script" id=4]
+[ext_resource path="res://Player/DamageBox.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -35,6 +37,7 @@
 [sub_resource type="SegmentShape2D" id=17]
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 57, 214.5 )
 
 [node name="Player1" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
@@ -45,26 +48,31 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="left_hand" type="Area2D" parent="Sprite"]
+script = ExtResource( 4 )
 
 [node name="left_hand" type="CollisionShape2D" parent="Sprite/left_hand"]
 shape = SubResource( 2 )
 
 [node name="right_hand" type="Area2D" parent="Sprite"]
+script = ExtResource( 4 )
 
 [node name="right_hand" type="CollisionShape2D" parent="Sprite/right_hand"]
 shape = SubResource( 2 )
 
 [node name="left_foot" type="Area2D" parent="Sprite"]
+script = ExtResource( 4 )
 
 [node name="left_foot" type="CollisionShape2D" parent="Sprite/left_foot"]
 shape = SubResource( 2 )
 
 [node name="right_foot" type="Area2D" parent="Sprite"]
+script = ExtResource( 4 )
 
 [node name="right_foot" type="CollisionShape2D" parent="Sprite/right_foot"]
 shape = SubResource( 2 )
 
 [node name="damage_box" type="Area2D" parent="Sprite"]
+script = ExtResource( 5 )
 
 [node name="left_arm_end" type="CollisionShape2D" parent="Sprite/damage_box"]
 shape = SubResource( 4 )
@@ -109,6 +117,7 @@ shape = SubResource( 16 )
 shape = SubResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -214.5 )
 shape = SubResource( 3 )
 
 [node name="Animator" type="Node" parent="."]

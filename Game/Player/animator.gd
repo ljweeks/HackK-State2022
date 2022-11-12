@@ -63,6 +63,17 @@ func show_frame(image, frame):
 				var shape_obj = damage_box.shape_owner_get_shape(owner, shape)
 				shape_obj.b = Vector2(bone["x1"], bone["y1"])
 				shape_obj.a = Vector2(bone["x2"], bone["y2"])
+	
+	var hurtboxes = frame['hurtboxes']
+	for key in hurtboxes.keys():
+		var box = hurtboxes[key]
+		var active = false
+		if 'active' in box and box['active']:
+			active = true
+		var hurtbox = sprite.get_node(key)
+		hurtbox.position = Vector2(box['x'], box['y'])
+		hurtbox.monitoring = active
+		hurtbox.monitorable = active
 
 func _physics_process(delta: float) -> void:
 	if playing:
