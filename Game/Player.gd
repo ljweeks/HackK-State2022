@@ -10,7 +10,7 @@ var jump_force = 500
 var can_jump = false
 var gravity = 1000
 export (int) var player = 1
-
+var mirror = false
 onready var animator = $Animator
 
 enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
@@ -29,18 +29,33 @@ func get_input(delta):
 	
 	if right_str > left_str:
 		if not animator.playing:
-			animator.play(MOVE_RIGHT)
+			if(mirror):
+				animator.play(MOVE_RIGHT)
+			else:
+				animator.play(MOVE_LEFT)
+	if left_str > right_str:
+		if not animator.playing:
+			if(mirror):
+				animator.play(MOVE_LEFT)
+			else:
+				animator.play(MOVE_RIGHT)
 	
 	vel.x -= left_str * speed * delta
 	vel.x += right_str * speed * delta
-	
-	if(Input.get_action_strength("up" + str(player)) > 0.8 and can_jump):
-		print("jump")
-		can_jump = false
-		vel.y -= jump_force
-		
+	if(Input.is_action_just_pressed("block" + str(player))):
+		attack(BLOCK)
+	elif(Input.is_action_just_pressed("attack1-" + str(player))):
+		attack(MOVE1)
+	elif(Input.is_action_just_pressed("attack2-" + str(player))):
+		attack(MOVE2)
+	elif(Input.is_action_just_pressed("attack3-" +str(player))):
+		attack(MOVE3)
+	elif(Input.is_action_just_pressed("attack4-" + str(player))):
+		attack(MOVE4)
 
-
+func attack(move):
+	print("did move " + str(move))
+	animator.play(move)
 
 func _process(delta):
 	pass
@@ -53,8 +68,10 @@ func _physics_process(delta):
 		x += item.global_position.x
 	if(global_position.x < (x / groups.size())):
 		$Sprite.flip_h = false
+		mirror = true
 	else:
 		$Sprite.flip_h = true
+		mirror = false
 	
 	if(is_on_floor()):
 		can_jump = true
