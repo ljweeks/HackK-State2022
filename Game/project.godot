@@ -36,6 +36,16 @@ Characters="*res://Data/Characters.gd"
 GlobalCameraServer="*res://Camera/GlobalCameraServer.tscn"
 CharactersSelectedData="*res://Data/characters_selected_data.gd"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=1280
+window/size/test_height=720
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
