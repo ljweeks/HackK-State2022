@@ -57,7 +57,7 @@ margin_bottom = 111.0
 margin_right = 94.8655
 margin_bottom = 39.4343
 
-[node name="stop2" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+[node name="stop" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 margin_left = 98.0
 margin_right = 192.866
 margin_bottom = 39.4343

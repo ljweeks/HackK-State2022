@@ -4,10 +4,15 @@ enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4}
 
 onready var cur_selected = BLOCK
 var all_checked = {}
-
-
+onready var slider = get_node("VBoxContainer/HBoxContainer2/frame_select")
+onready var start_frame = get_node("VBoxContainer/HBoxContainer/start") 
+onready var stop_frame = get_node("VBoxContainer/HBoxContainer/stop")
+var can_save
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	can_save = false
+	start_frame.min_value = 0
+	stop_frame.min_value = 1
 	$VBoxContainer2/save.modulate = Color.transparent
 	all_checked.BLOCK = false
 	all_checked.MOVE_LEFT = false
@@ -80,7 +85,9 @@ func _on_record_toggled(button_pressed):
 		if(not item):
 			return
 	$VBoxContainer2/save.modulate = Color.white
+	can_save = true
 
 
 func _on_TextureButton_pressed():
-	print("save character")
+	if(start_frame.value < stop_frame.value and can_save):
+		print("save character")
