@@ -16,6 +16,8 @@ func damage(amount: int) -> void:
 		health = max(health - amount, 0)
 		player.get_node("WhiteFlash").play("flash")
 		print("Player " + str(player.player) + " hit")
+		if health <= 0:
+			player.get_node("DeathAnim").play("death")
 
 func _physics_process(delta):
 	last_hit += delta
