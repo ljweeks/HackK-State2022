@@ -13,6 +13,8 @@ export (int) var player = 1
 export (int) var speed = 2000
 var mirror = false
 onready var animator = $Animator
+var move_cooldown = 0.75
+var move_time = 0
 
 enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
 
@@ -54,14 +56,19 @@ func get_input(delta):
 	vel.x += right_str * speed * delta
 	if(Input.is_action_just_pressed("block" + str(player))):
 		attack(BLOCK)
-	elif(Input.is_action_just_pressed("attack1-" + str(player))):
-		attack(MOVE1)
-	elif(Input.is_action_just_pressed("attack2-" + str(player))):
-		attack(MOVE2)
-	elif(Input.is_action_just_pressed("attack3-" +str(player))):
-		attack(MOVE3)
-	elif(Input.is_action_just_pressed("attack4-" + str(player))):
-		attack(MOVE4)
+	if(move_time < 0):
+		if(Input.is_action_just_pressed("attack1-" + str(player))):
+			attack(MOVE1)
+			move_time = move_cooldown
+		elif(Input.is_action_just_pressed("attack2-" + str(player))):
+			attack(MOVE2)
+			move_time = move_cooldown
+		elif(Input.is_action_just_pressed("attack3-" +str(player))):
+			attack(MOVE3)
+			move_time = move_cooldown
+		elif(Input.is_action_just_pressed("attack4-" + str(player))):
+			attack(MOVE4)
+			move_time = move_cooldown
 
 func attack(move):
 	print("did move " + str(move))
@@ -86,7 +93,7 @@ func check_mirror():
 
 func _physics_process(delta):
 	check_mirror()
-	
+    move_time -= delta
 	if(is_on_floor()):
 		can_jump = true
 	
