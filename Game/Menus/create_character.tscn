@@ -78,6 +78,10 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 points = PoolVector2Array( 320, 480, 320, 0 )
 default_color = Color( 1, 0.4, 0.4, 0.309804 )
 
+[node name="shoulder" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 0, 100, 640, 100 )
+default_color = Color( 1, 0.4, 0.4, 0.309804 )
+
 [node name="left_border" type="Line2D" parent="VBoxContainer/frames"]
 points = PoolVector2Array( -5, 0, -5, 480 )
 default_color = Color( 1, 1, 1, 1 )
