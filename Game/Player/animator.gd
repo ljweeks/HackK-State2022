@@ -32,6 +32,7 @@ func _ready():
 		shape_obj = shape_obj.duplicate(true)
 		damage_box.shape_owner_add_shape(owner, shape_obj)
 		shape_owner_obj.set_shape(shape_obj)
+	
 
 func play(move) -> void:
 	anim_images = character.get_images(move)

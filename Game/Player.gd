@@ -5,11 +5,12 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 var vel = Vector2()
-var speed = 2000
+
 var jump_force = 500
 var can_jump = false
-var gravity = 1000
+var gravity = 0
 export (int) var player = 1
+export (int) var speed = 2000
 var mirror = false
 onready var animator = $Animator
 
@@ -17,12 +18,25 @@ enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	CharactersSelectedData.connect("character_selected", self, "change_character")
 	if player == 1:
 		animator.character = CharactersSelectedData.player1
 	elif player == 2:
 		animator.character = CharactersSelectedData.player2
+	animator.play(MOVE1)
+	animator.stop()
+	
 
-
+func change_character():
+	if player == 1:
+		animator.character = CharactersSelectedData.player1
+		animator.play(MOVE1)
+		animator.stop()
+	elif player == 2:
+		animator.character = CharactersSelectedData.player2
+		animator.play(MOVE1)
+		animator.stop()
+	
 func get_input(delta):
 	var left_str = Input.get_action_strength("left" + str(player))
 	var right_str = Input.get_action_strength("right" + str(player))

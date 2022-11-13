@@ -33,11 +33,13 @@ func _on_create_pressed():
 func _on_characterList2_item_selected(index):
 	print("player 2 selected character " + str(Characters.CHARACTERS[index].name))
 	CharactersSelectedData.player2 = Characters.CHARACTERS[index]
+	CharactersSelectedData.emit_signal("character_selected")
 
 
 func _on_characterList1_item_selected(index):
 	print("player 1 selected character " + str(Characters.CHARACTERS[index].name))
 	CharactersSelectedData.player1 = Characters.CHARACTERS[index]
+	CharactersSelectedData.emit_signal("character_selected")
 
 func _on_fight_pressed():
 	

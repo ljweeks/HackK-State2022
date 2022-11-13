@@ -219,5 +219,16 @@ margin_bottom = 1052.0
 rect_min_size = Vector2( 128, 128 )
 texture_normal = ExtResource( 13 )
 
+[node name="back" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.6621
+margin_top = -200.0
+margin_right = 50.6621
+margin_bottom = -136.0
+text = "BACK"
+
 [connection signal="toggled" from="VBoxContainer/HBoxContainer2/record" to="." method="_on_record_toggled"]
 [connection signal="pressed" from="VBoxContainer2/save" to="." method="_on_TextureButton_pressed"]
