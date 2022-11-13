@@ -19,21 +19,17 @@ enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CharactersSelectedData.connect("character_selected", self, "change_character")
-	if player == 1:
-		animator.character = CharactersSelectedData.player1
-	elif player == 2:
-		animator.character = CharactersSelectedData.player2
-	animator.play(MOVE1)
-	animator.stop()
+	check_mirror()
+	change_character()
 	
 
 func change_character():
 	if player == 1:
-		animator.character = CharactersSelectedData.player1
+		animator.character = Characters.get_character(CharactersSelectedData.player1)
 		animator.play(MOVE1)
 		animator.stop()
 	elif player == 2:
-		animator.character = CharactersSelectedData.player2
+		animator.character = Characters.get_character(CharactersSelectedData.player2)
 		animator.play(MOVE1)
 		animator.stop()
 	
@@ -76,8 +72,7 @@ func attack(move):
 func _process(delta):
 	pass
 
-func _physics_process(delta):
-	
+func check_mirror():
 	var groups = get_tree().get_nodes_in_group("player")
 	var x = 0
 	for item in groups:
@@ -88,6 +83,9 @@ func _physics_process(delta):
 	else:
 		$Sprite.flip_h = true
 		mirror = false
+
+func _physics_process(delta):
+	check_mirror()
 	
 	if(is_on_floor()):
 		can_jump = true

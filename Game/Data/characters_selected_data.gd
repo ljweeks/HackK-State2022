@@ -8,5 +8,5 @@ var player2
 signal character_selected
 
 func _ready():
-	player1 = Characters.CHARACTERS[0]
-	player2 = Characters.CHARACTERS[0]
+	player1 = Characters.CHARACTER_NAMES[0]
+	player2 = Characters.CHARACTER_NAMES[0]

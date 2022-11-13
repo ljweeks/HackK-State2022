@@ -11,12 +11,12 @@ func _ready():
 	var selectIndex1 = 0
 	var selectIndex2 = 0
 	var index = 0
-	for item in Characters.CHARACTERS:
-		$player1/characterList1.add_item(item.name, null, true)
-		if item == CharactersSelectedData.player1:
+	for item in Characters.CHARACTER_NAMES:
+		$player1/characterList1.add_item(item, null, true)
+		if item == CharactersSelectedData.player1.json_escape().strip_escapes().replace(' ', '') + ".res":
 			selectIndex1 = index
-		$player2/characterList2.add_item(item.name, null, true)
-		if item == CharactersSelectedData.player2:
+		$player2/characterList2.add_item(item, null, true)
+		if item == CharactersSelectedData.player2.json_escape().strip_escapes().replace(' ', '') + ".res":
 			selectIndex2 = index
 		index += 1
 	$player1/characterList1.select(selectIndex1)
@@ -31,14 +31,14 @@ func _on_create_pressed():
 
 
 func _on_characterList2_item_selected(index):
-	print("player 2 selected character " + str(Characters.CHARACTERS[index].name))
-	CharactersSelectedData.player2 = Characters.CHARACTERS[index]
+	print("player 2 selected character " + str(Characters.CHARACTER_NAMES[index]))
+	CharactersSelectedData.player2 = Characters.CHARACTER_NAMES[index]
 	CharactersSelectedData.emit_signal("character_selected")
 
 
 func _on_characterList1_item_selected(index):
-	print("player 1 selected character " + str(Characters.CHARACTERS[index].name))
-	CharactersSelectedData.player1 = Characters.CHARACTERS[index]
+	print("player 1 selected character " + str(Characters.CHARACTER_NAMES[index]))
+	CharactersSelectedData.player1 = Characters.CHARACTER_NAMES[index]
 	CharactersSelectedData.emit_signal("character_selected")
 
 func _on_fight_pressed():
