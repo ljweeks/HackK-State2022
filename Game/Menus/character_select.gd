@@ -21,6 +21,7 @@ func _ready():
 		index += 1
 	$player1/characterList1.select(selectIndex1)
 	$player2/characterList2.select(selectIndex2)
+	GlobalCameraServer.disable_preview()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

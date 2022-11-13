@@ -19,6 +19,7 @@ var can_save
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalCameraServer.connect("record_finished", self, "_on_record_finished")
+	GlobalCameraServer.enable_preview()
 	can_save = false
 	start_frame.min_value = 0
 	stop_frame.min_value = 1

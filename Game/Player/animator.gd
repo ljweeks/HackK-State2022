@@ -78,8 +78,8 @@ func show_frame(image, frame):
 			active = true
 		var hurtbox = sprite.get_node(key)
 		hurtbox.position = Vector2(flip_x_coord(box['x']), box['y'])
-		hurtbox.monitoring = active
-		hurtbox.monitorable = active
+		hurtbox.set_deferred('monitoring', active)
+		hurtbox.set_deferred('monitorable', active)
 		if active:
 			hurtbox.get_node("HurtboxParticles").emitting = true
 

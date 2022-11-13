@@ -16,6 +16,8 @@ var server_recording := false
 var recording_images: Array = []
 var recording_frames: Array = []
 
+var preview_enabled := false
+
 signal record_finished(images, frames)
 
 
@@ -30,6 +32,16 @@ func start_record() -> void:
 
 func end_record() -> void:
 	$EndRecordRequest.request("http://127.0.0.1:8080/record/end")
+
+func enable_preview() -> void:
+	preview_enabled = true
+	preview_image_complete = true
+	preview_frame_complete = true
+
+func disable_preview() -> void:
+	preview_enabled = false
+	preview_image_complete = true
+	preview_frame_complete = true
 
 func _texture_from_bytes(bytes) -> ImageTexture:
 	var texture = ImageTexture.new()
@@ -48,7 +60,7 @@ func _ready():
 
 func _process(delta):
 	last_preview += delta
-	if last_preview >= PREVIEW_COOLDOWN:
+	if last_preview >= PREVIEW_COOLDOWN and preview_enabled:
 		if preview_image_complete:
 			var error = $PreviewImageRequest.request("http://127.0.0.1:8080/preview/image")
 			preview_image_complete = false
