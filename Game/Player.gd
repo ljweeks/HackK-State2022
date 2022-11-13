@@ -93,7 +93,7 @@ func check_mirror():
 
 func _physics_process(delta):
 	check_mirror()
-    move_time -= delta
+	move_time -= delta
 	if(is_on_floor()):
 		can_jump = true
 	

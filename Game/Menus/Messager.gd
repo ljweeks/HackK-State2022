@@ -11,6 +11,11 @@ var time = 1
 
 var finished = false
 
+onready var three = $three
+onready var two = $two
+onready var one = $one
+onready var begin = $begin
+
 func _ready():
 	get_tree().paused = true
 	visible = true
@@ -23,7 +28,14 @@ func _process(delta):
 		countdown_step += 1
 		print(countdown_step)
 		text = str(COUNTDOWN_STEPS - countdown_step + 1)
+		if(text == '3'):
+			three.play()
+		if(text == '2'):
+			two.play()
+		if(text == '1'):
+			one.play()
 		if countdown_step == COUNTDOWN_STEPS + 1:
+			begin.play()
 			get_tree().paused = false
 			visible = false
 	
