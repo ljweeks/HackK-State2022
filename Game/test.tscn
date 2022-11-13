@@ -1,34 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://backgrounds/background_scuffed.jpg" type="Texture" id=2]
 [ext_resource path="res://Menus/fight_overlay.tscn" type="PackedScene" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1000, 10 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player1" parent="." instance=ExtResource( 1 )]
+position = Vector2( -350, 100 )
+scale = Vector2( 1.5, 1.5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1, -328 )
 current = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 0, 200 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
-scale = Vector2( 50, 0.5 )
-texture = ExtResource( 2 )
-
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 222, -17 )
+position = Vector2( 350, 100 )
+scale = Vector2( 1.5, 1.5 )
 player = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FightOverlay" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 0, -500 )
+z_index = -2
+texture = ExtResource( 2 )

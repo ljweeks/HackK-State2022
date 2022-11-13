@@ -163,4 +163,8 @@ func _on_TextureButton_pressed():
 		char_data.move_images = moves_images
 		char_data.get_hurt_boxes()
 		Characters.add_character(char_data)
-		get_tree().change_scene("res://Menus/character_select.tscn")
+		
+
+
+func _on_back_pressed():
+	get_tree().change_scene("res://Menus/character_select.tscn")

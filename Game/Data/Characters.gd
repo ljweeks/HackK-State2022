@@ -13,7 +13,9 @@ func _ready():
 		while file_name != "":
 			print("File name: ", file_name)
 			if file_name.ends_with("res"):
-				CHARACTERS.push_back(load("user://" + file_name))
+				var character = load("user://" + file_name)
+				character.get_hurt_boxes()
+				CHARACTERS.push_back(character)
 			file_name = dir.get_next()
 	
 	if GEN_FAKE and CHARACTERS.size() <= 0:

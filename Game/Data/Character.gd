@@ -77,5 +77,9 @@ func hurt_box_for_move(move):
 		if(index > move_ranges[move]["stop"]):
 			break
 	move_frames[move][frame_number-1]["hurtboxes"][largest_box]["active"] = true
+	move_frames[move][frame_number-2]["hurtboxes"][largest_box]["active"] = true
 	print("move-" + str(move) + " frame-" + str(frame_number-1) + " for-" + largest_box)
-	
+	print("move-" + str(move) + " frame-" + str(frame_number-2) + " for-" + largest_box)
+	if(move_frames[move].size() > frame_number+1):
+		move_frames[move][frame_number]["hurtboxes"][largest_box]["active"] = true
+		print("move-" + str(move) + " frame-" + str(frame_number) + " for-" + largest_box)
