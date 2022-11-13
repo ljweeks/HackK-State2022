@@ -23,6 +23,7 @@ script = ExtResource( 11 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
+margin_left = 50.0
 margin_top = -300.0
 margin_bottom = 300.0
 
@@ -72,6 +73,26 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 
 [node name="right_head" type="Line2D" parent="VBoxContainer/frames"]
 points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="center" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 320, 480, 320, 0 )
+default_color = Color( 1, 0.4, 0.4, 0.309804 )
+
+[node name="left_border" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( -5, 0, -5, 480 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="top_border" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( -5, -5, 645, -5 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="right_border" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( 645, 0, 645, 480 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="bottom_border" type="Line2D" parent="VBoxContainer/frames"]
+points = PoolVector2Array( -5, 485, 645, 485 )
+default_color = Color( 1, 1, 1, 1 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 4.0
@@ -126,7 +147,7 @@ rect_min_size = Vector2( 400, 64 )
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -392.0
+margin_left = -442.0
 margin_bottom = 1052.0
 
 [node name="block" parent="VBoxContainer2" instance=ExtResource( 12 )]
@@ -136,7 +157,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 128.0
 button_path = ExtResource( 5 )
 
@@ -147,7 +168,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 132.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 260.0
 type = 1
 button_path = ExtResource( 3 )
@@ -159,7 +180,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 264.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 392.0
 type = 2
 button_path = ExtResource( 4 )
@@ -171,7 +192,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 396.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 524.0
 type = 3
 button_path = ExtResource( 8 )
@@ -183,7 +204,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 528.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 656.0
 type = 4
 button_path = ExtResource( 7 )
@@ -195,7 +216,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 660.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 788.0
 type = 5
 button_path = ExtResource( 6 )
@@ -207,14 +228,14 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 792.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 920.0
 type = 6
 button_path = ExtResource( 2 )
 
 [node name="save" type="TextureButton" parent="VBoxContainer2"]
 margin_top = 924.0
-margin_right = 392.0
+margin_right = 442.0
 margin_bottom = 1052.0
 rect_min_size = Vector2( 128, 128 )
 texture_normal = ExtResource( 13 )
@@ -224,11 +245,24 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -50.6621
-margin_top = -200.0
-margin_right = 50.6621
-margin_bottom = -136.0
+margin_left = -75.0
+margin_top = -250.0
+margin_right = 75.0
+margin_bottom = -160.0
 text = "BACK"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.0
+margin_top = 250.0
+margin_bottom = 147.0
+text = "Record your moves!
+-Select the move to record on the right
+-Click the record button
+-Click again to stop
+-Choose frames to use"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer2/record" to="." method="_on_record_toggled"]
 [connection signal="pressed" from="VBoxContainer2/save" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
