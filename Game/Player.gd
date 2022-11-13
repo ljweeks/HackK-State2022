@@ -70,6 +70,8 @@ func get_input(delta):
 func attack(move):
 	print("did move " + str(move))
 	animator.play(move)
+	$MoveDust.restart()
+	$MoveDust.emitting = true
 
 func _process(delta):
 	pass

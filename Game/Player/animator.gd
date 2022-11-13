@@ -80,6 +80,8 @@ func show_frame(image, frame):
 		hurtbox.position = Vector2(flip_x_coord(box['x']), box['y'])
 		hurtbox.monitoring = active
 		hurtbox.monitorable = active
+		if active:
+			hurtbox.get_node("HurtboxParticles").emitting = true
 
 func _physics_process(delta: float) -> void:
 	if playing:
