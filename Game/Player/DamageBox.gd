@@ -10,10 +10,14 @@ var health := 100
 
 var last_hit := INF
 
+enum {BLOCK, MOVE_LEFT, MOVE_RIGHT, MOVE1, MOVE2, MOVE3, MOVE4, NO_MOVE}
 
 func damage(amount: int) -> bool:
 	if last_hit > INVULN_TIME:
-		health = max(health - amount, 0)
+		if(player.animator.cur_move == BLOCK):
+			health = max(health - (amount / 5), 0)
+		else:
+			health = max(health - amount, 0)
 		player.get_node("WhiteFlash").play("flash")
 		print("Player " + str(player.player) + " hit")
 		if health <= 0:
