@@ -62,6 +62,7 @@ func _on_record_finished(images, frames):
 		print("recorder move 1")
 		$VBoxContainer2/move1.complete.set_texture(load("res://Icons/checkmark.png"))
 		all_checked[MOVE1] = true
+		can_save = true
 	elif(cur_selected == MOVE2):
 		print("recorded move 2")
 		$VBoxContainer2/move2.complete.set_texture(load("res://Icons/checkmark.png"))
@@ -75,11 +76,12 @@ func _on_record_finished(images, frames):
 		$VBoxContainer2/move4.complete.set_texture(load("res://Icons/checkmark.png"))
 		all_checked[MOVE4] = true
 	var val = all_checked.values()
-	for item in val:
-		if(not item):
-			return
-	$VBoxContainer2/save.modulate = Color.white
-	can_save = true
+	#for item in val:
+	#	if(not item):
+	#		return
+	if(can_save):
+		$VBoxContainer2/save.modulate = Color.white
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -156,6 +158,18 @@ func display_preview(move):
 func _on_TextureButton_pressed():
 	print("SAVE")
 	if start_frame.value < stop_frame.value and can_save:
+		if(not all_checked[MOVE2]):
+			moves_frames[MOVE2] = moves_frames[MOVE1]
+			moves_ranges[MOVE2] = moves_ranges[MOVE1]
+			moves_images[MOVE2] = moves_images[MOVE1]
+		if(not all_checked[MOVE3]):
+			moves_frames[MOVE3] = moves_frames[MOVE1]
+			moves_ranges[MOVE3] = moves_ranges[MOVE1]
+			moves_images[MOVE3] = moves_images[MOVE1]
+		if(not all_checked[MOVE4]):
+			moves_frames[MOVE4] = moves_frames[MOVE1]
+			moves_ranges[MOVE4] = moves_ranges[MOVE1]
+			moves_images[MOVE4] = moves_images[MOVE1]
 		var char_data = Character.new()
 		char_data.name = $VBoxContainer/HBoxContainer/name.text
 		char_data.move_frames = moves_frames
@@ -163,7 +177,7 @@ func _on_TextureButton_pressed():
 		char_data.move_images = moves_images
 		char_data.get_hurt_boxes()
 		Characters.add_character(char_data)
-		
+		get_tree().change_scene("res://Menus/character_select.tscn")
 
 
 func _on_back_pressed():
