@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Menus/character_select.gd" type="Script" id=1]
 [ext_resource path="res://Theme/kenneyUI-red.tres" type="Theme" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Theme/kenvector_future.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 90
+font_data = ExtResource( 4 )
 
 [node name="character_select" type="Control"]
 anchor_right = 1.0
@@ -32,8 +41,10 @@ speed = 0
 [node name="player1" type="VBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -323.0
+margin_left = 80.0
+margin_top = -403.0
 margin_right = 600.0
+margin_bottom = -80.0
 
 [node name="create" type="Button" parent="player1"]
 margin_right = 600.0
@@ -52,8 +63,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -600.0
-margin_top = -324.0
+margin_left = -680.0
+margin_top = -404.0
+margin_right = -80.0
+margin_bottom = -80.0
 
 [node name="create" type="Button" parent="player2"]
 margin_right = 600.0
@@ -69,11 +82,27 @@ rect_min_size = Vector2( 600, 256 )
 
 [node name="fight" type="Button" parent="."]
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -54.6621
-margin_right = 54.6621
-margin_bottom = 51.251
+anchor_bottom = 1.0
+margin_left = -175.662
+margin_top = -286.0
+margin_right = 175.662
+margin_bottom = -160.0
+custom_fonts/font = SubResource( 1 )
 text = "FIGHT"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -500.0
+margin_top = 50.0
+margin_right = 500.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 1000, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "MP Fighter"
+align = 1
 
 [connection signal="pressed" from="player1/create" to="." method="_on_create_pressed"]
 [connection signal="item_selected" from="player1/characterList1" to="." method="_on_characterList1_item_selected"]
