@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Theme/kenneyUI-red.tres" type="Theme" id=1]
 [ext_resource path="res://white.png" type="Texture" id=2]
 [ext_resource path="res://Menus/healthbar.gd" type="Script" id=3]
 [ext_resource path="res://Menus/Messager.gd" type="Script" id=4]
 [ext_resource path="res://Theme/kenvector_future.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://sounds/begin.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sounds/3.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sounds/1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sounds/2.ogg" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 180
@@ -65,3 +69,15 @@ text = "VICTORY"
 align = 1
 valign = 1
 script = ExtResource( 4 )
+
+[node name="three" type="AudioStreamPlayer" parent="Message"]
+stream = ExtResource( 7 )
+
+[node name="two" type="AudioStreamPlayer" parent="Message"]
+stream = ExtResource( 9 )
+
+[node name="one" type="AudioStreamPlayer" parent="Message"]
+stream = ExtResource( 8 )
+
+[node name="begin" type="AudioStreamPlayer" parent="Message"]
+stream = ExtResource( 6 )
