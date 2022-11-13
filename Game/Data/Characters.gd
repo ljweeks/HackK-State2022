@@ -29,5 +29,7 @@ func add_character(character):
 	ResourceSaver.save("user://" + filename, character, ResourceSaver.FLAG_BUNDLE_RESOURCES & ResourceSaver.FLAG_CHANGE_PATH)
 
 func get_character(char_name):
-	return load("user://" + char_name)
+	var character = load("user://" + char_name).duplicate()
+	character.get_hurt_boxes()
+	return character
 
