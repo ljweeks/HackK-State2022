@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/exampe_frame.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player/DamageBox.gd" type="Script" id=5]
 [ext_resource path="res://Effects/hurtbox_particles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Effects/Kenney/smoke_06.png" type="Texture" id=7]
+[ext_resource path="res://sounds/impactPunch_heavy_001.ogg" type="AudioStream" id=8]
 
 [sub_resource type="Shader" id=18]
 code = "shader_type canvas_item;
@@ -234,6 +235,9 @@ shape = SubResource( 16 )
 
 [node name="right_head" type="CollisionShape2D" parent="Sprite/damage_box"]
 shape = SubResource( 17 )
+
+[node name="damage_sound" type="AudioStreamPlayer" parent="Sprite/damage_box"]
+stream = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -214.5 )
