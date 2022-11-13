@@ -19,6 +19,12 @@ func damage(amount: int) -> bool:
 		else:
 			health = max(health - amount, 0)
 		player.get_node("WhiteFlash").play("flash")
+		player.animator.stop()
+		player.animator.play(MOVE_LEFT)
+		if(player.mirror):
+			player.vel.x -= 2000
+		else:
+			player.vel.x += 2000
 		print("Player " + str(player.player) + " hit")
 		if health <= 0:
 			player.get_node("DeathAnim").play("death")
