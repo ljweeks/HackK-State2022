@@ -41,6 +41,7 @@ config/icon="res://icon.png"
 Characters="*res://Data/Characters.gd"
 GlobalCameraServer="*res://Camera/GlobalCameraServer.tscn"
 CharactersSelectedData="*res://Data/characters_selected_data.gd"
+CameraEffects="*res://Effects/camera_effects.gd"
 
 [display]
 
